@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>插入绑定</title>
+    <script src="https://cdn.bootcss.com/avalon.js/1.4.4/avalon.js"></script>
+  </head>
+  <body ms-controller="test">
+    <ul ms-each-item="array">
+      <li ms-click="$reomve" ms-if="$index % 2 == 0">
+        {{ item }} ----{{ $index }}
+      </li>
+    </ul>
+    <script type="text/javascript">
+      avalon.define({
+        $id: "test",
+        array: "a,b,c,d,e,f,g".split(",")
+      });
+    </script>
+  </body>
+</html>
