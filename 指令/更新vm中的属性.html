@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>更新vm中的属性</title>
+    <script src="https://cdn.bootcss.com/avalon.js/1.4.4/avalon.js"></script>
+  </head>
+  <body>
+    <script>
+      var model = avalon.define({
+        $id: "update",
+        aaa: "str",
+        bbb: false,
+        ccc: 123,
+        time: new Date(),
+        simpleArray: [1, 2, 3, 4],
+        objectArray: [
+          { name: "a", value: "aa" },
+          { name: "b", value: "bb" },
+          { name: "c", value: "cc" },
+          { name: "d", value: "dd" }
+        ],
+        object: {
+          o1: "k1",
+          o2: "k2",
+          o3: "k3"
+        }
+      });
+
+      setTimeout(function() {
+        model.aaa = "这是字符串";
+        model.bbb = true;
+      }, 2000);
+      setTimeout(function() {
+        model.simpleArray.set(0, 3);
+        model.object = {
+          o1: "haha1",
+          o2: "haha2",
+          o3: "haha3",
+          o4: "haha4"
+        };
+      }, 3000);
+    </script>
+
+    <!-- dom -->
+    <div ms-controller="update">
+      <div>{{ aaa }}</div>
+      <div>{{ bbb }}</div>
+      <div>{{ ccc }}</div>
+
+      <ul ms-each="simpleArray">
+        <li>
+          {{ el }}
+        </li>
+      </ul>
+
+      <div>
+        <select ms-each="objectArray"></select>
+      </div>
+
+      <ol ms-each="object">
+        <li>{{ $key }}{{ $val }}</li>
+      </ol>
+    </div>
+  </body>
+</html>
